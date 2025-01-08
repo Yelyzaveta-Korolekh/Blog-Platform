@@ -1,5 +1,8 @@
 body{
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     margin: 0;
+    padding: 0;
 }
 header {
     display: flex;
@@ -76,3 +79,5 @@ nav ul li a:hover {
 .auth-buttons a:hover {
     text-decoration: underline;
 }
+
+

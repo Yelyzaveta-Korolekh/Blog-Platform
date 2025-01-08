@@ -1,7 +1,8 @@
-from django.shortcuts import render 
+from django.shortcuts import render, redirect
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
+from django.contrib.auth import login
 
 def index(request): 
     return render(request, 'blog/index.html')
