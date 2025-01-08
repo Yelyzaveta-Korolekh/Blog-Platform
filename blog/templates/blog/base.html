@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Travel Blog</title>
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+</head>
+<body>
+    
+    <header>
+        <div class="logo"> <a href="{% url 'index' %}"> <img src="{% static 'images/logo.png' %}" alt="Logo"></a> </div>
+        <nav>
+            <ul>
+                <li><a href="{% url 'index' %}">Головна</a></li>
+                <li><a href="{% url 'about_us' %}">Про нас</a></li> 
+                <li><a href="{% url 'contacts' %}">Контакти</a></li>
+                <li><a href="{% url 'blog' %}">Блог</a></li>
+            </ul>
+        </nav>
+        <div class="search">
+            <form method="get" action="#"> <input type="text" name="q" placeholder="Пошук..."> <button
+                    type="submit">Пошук</button> </form>
+        </div>
+        <div class="auth-buttons"> <a href="{% url 'login' %}">Вхід</a> <a href="{% url 'signup' %}">Реєстрація</a> </div>
+    </header>
+</body>
+</html>
