@@ -5,16 +5,18 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="{% static 'css/signup.css' %}">
-    <title>Login</title>
+    <title>Вхід</title>
 </head>
 <body>
     <div class="container">
-    <h1>Login</h1>
+    <h1>Вхід</h1>
     <form method="post">
         {% csrf_token %}
         {{ form.as_p }}
-        <button type="submit">Login</button>
+        <button type="submit">Вхід</button>
     </form>
-</div>
+    </div> 
+<button onclick="history.back()" id="backBtn">&#8592;</button>
+
 </body>
 </html>
