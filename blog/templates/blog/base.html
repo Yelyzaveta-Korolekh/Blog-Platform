@@ -23,7 +23,19 @@
             <form method="get" action="#"> <input type="text" name="q" placeholder="Пошук..."> <button
                     type="submit">Пошук</button> </form>
         </div>
-        <div class="auth-buttons"> <a href="{% url 'login' %}">Вхід</a> <a href="{% url 'signup' %}">Реєстрація</a> </div>
+
+        <div class="auth-buttons">
+            {% if user.is_authenticated %}
+                <span> Привіт, {{user.username }}</span>
+                <form method="post" action="{% url 'logout' %}"> 
+                    {% csrf_token %} 
+                    <button class="exit-btn" type="submit">Вийти</button> 
+                </form>
+            {% else %}
+             <a href="{% url 'login' %}"> Вхід</a> 
+            <a href="{% url 'signup' %}">Реєстрація</a> 
+            {%endif%}
+        </div>
     </header>
 </body>
 </html>
