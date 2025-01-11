@@ -80,4 +80,35 @@ nav ul li a:hover {
     text-decoration: underline;
 }
 
+.post-container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+
+.post{
+    border: 0.5px solid rgb(147, 146, 146);
+    max-width: 400px;
+    padding: 20px;
+}
+
+.post-title{
+    font-size: 24px; 
+    margin: 10px 0 5px; 
+    color: #333333;
+}
+
+.post-author{
+    font-size: 12px;
+    margin-bottom: 20px;
+    color: #605f5f;
+}
+
+.post-content {
+    color: #424242;
+    line-height: 1.6
+}
+
 

@@ -3,3 +3,5 @@
 db.sqlite3
 *.pyc
 *.sqlite3
+/blog/__pycache__
+*.sqlite3

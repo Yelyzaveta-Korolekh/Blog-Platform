@@ -1,7 +1,7 @@
 from django.urls import path, include
 from . import views
 from .views import CustomLoginView
-from .views import SignupView, aboutUs, contacts
+from .views import SignupView, aboutUs, contacts, blog, addPost
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
@@ -11,6 +11,7 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(next_page='index'), name='logout'),
     path('about/', aboutUs, name='about_us'), 
     path('contacts/', contacts, name='contacts'),
-    path('blog/', contacts, name='blog'),
+    path('blog/', blog, name='blog'),
+    path('add-post/', addPost, name='addPost')
 ]
 

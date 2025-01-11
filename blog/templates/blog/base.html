@@ -31,11 +31,17 @@
                     {% csrf_token %} 
                     <button class="exit-btn" type="submit">Вийти</button> 
                 </form>
+                <a href="{% url 'addPost' %}">Додати Допис</a>
             {% else %}
              <a href="{% url 'login' %}"> Вхід</a> 
             <a href="{% url 'signup' %}">Реєстрація</a> 
             {%endif%}
+            
         </div>
     </header>
+    <div class="content"> 
+        {% block content %}
+        {% endblock %} 
+    </div>
 </body>
 </html>
