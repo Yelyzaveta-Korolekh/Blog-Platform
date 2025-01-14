@@ -12,6 +12,7 @@
         <p class="post-content"> {{ post.content }}</p>
         {% if request.user == post.author %} 
         <a href="{% url 'editPost' post.id %}">Редагувати</a>
+        <a href="{% url 'deletePost' post.id %}">Видалити</a>
         {% endif %}
     </div>
     {% endfor %}

@@ -1,7 +1,7 @@
 from django.urls import path, include
 from . import views
 from .views import CustomLoginView
-from .views import SignupView, aboutUs, contacts, blog, addPost, editPost, postPage
+from .views import SignupView, aboutUs, contacts, blog, addPost, editPost, postPage, deletePost
 from django.contrib.auth.views import LogoutView
 
 urlpatterns = [
@@ -15,5 +15,6 @@ urlpatterns = [
     path('add-post/', addPost, name='addPost'),
     path('blog/edit/<int:post_id>/', editPost, name='editPost'),
     path('blog/<int:post_id>/', postPage, name='postPage'),
+    path('blog/delete/<int:post_id>/', deletePost, name='deletePost'),
 ]
 

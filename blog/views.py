@@ -60,6 +60,14 @@ def editPost(request, post_id):
         form = PostForm(instance=post)
     return render(request, 'blog/posts/editPost.html', {'form': form, 'post': post})
 
+@login_required
+def deletePost(request, post_id):
+    post = get_object_or_404(Post, id=post_id, author=request.user)
+    if request.method == 'POST': 
+        post.delete() 
+        return redirect('blog') 
+    return render(request, 'blog/posts/confirmDelete.html', {'post': post})
+
 def postPage (request, post_id):
     post = get_object_or_404(Post, id=post_id)
     return render(request, 'blog/posts/postPage.html', {'post' : post})
