@@ -3,12 +3,12 @@
 {% block title %}Видалення допису{% endblock %}
 
 {% block content %}
-<div class="container">
+<div class="confirm-container">
     <h1>Ви дійсно хочете видалити допис: {{ post.title }}?</h1>
     <form method="post">
         {% csrf_token %}
         <button type="submit">Так, видалити</button>
-        <a href="{% url 'blog' %}">Скасувати</a>
+        <button><a href="{% url 'blog' %}">Скасувати</a></button>
     </form>
 </div>
 {% endblock %}

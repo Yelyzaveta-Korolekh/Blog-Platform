@@ -10,10 +10,10 @@
         <h3 class="post-title">{{post.title}} </h3>
     </a>
     <p class="post-author"> Автор: {{post.author}} </p>
-    <p class="post-content"> {{post.content}} </p>
+    <p class="post-content"> {{post.content|truncatechars:150}} </p>
     {% if request.user == post.author %} 
-        <a href="{% url 'editPost' post.id %}">Редагувати</a>
-        <a href="{% url 'deletePost' post.id %}">Видалити</a>
+        <button><a href="{% url 'editPost' post.id %}">Редагувати</a></button>
+        <button><a href="{% url 'deletePost' post.id %}">Видалити</a></button>
     {% endif %}
 </div>
 {%endfor%}
