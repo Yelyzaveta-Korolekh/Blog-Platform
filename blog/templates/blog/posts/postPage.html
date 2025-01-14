@@ -4,27 +4,28 @@
 {% block content %}
 <div class="post-detail-container">
     <h1>{{post.title}}</h1>
-    <p>Автор: {{post.author}}</p>
-    <p>{{post.content}}</p>
+    <p class="post-author"> Автор: {{post.author}} </p>
+    <p class="post-content"> {{post.content|truncatechars:150}} </p>
 </div>
 <div class="comments-section">
     <h2>Коментарі</h2>
     <div class="comments"> 
         {% for comment in comments %} 
         <div class="comment">
-            <p><strong>{{ comment.author.username }}</strong></p>
+            <p class="post-author">{{ comment.author }} |  {{ comment.createdAt }}</p>
             <p>{{ comment.content }}</p>
-            <p>{{ comment.createdAt }}</p>
         </div> 
         {% endfor %} 
     </div>
     {% if request.user.is_authenticated %} 
+    <div class="comment-form">
     <h3>Додати коментар</h3>
     <form method="post"> 
         {% csrf_token %} 
         {{ form.as_p }} 
         <button type="submit">Надіслати</button> 
     </form> 
+</div>
     {% else %} 
     <p>
         Ви повинні <a href="{% url 'login' %}">увійти в систему</a>, щоб залишити коментар.</p> 
