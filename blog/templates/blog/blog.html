@@ -8,6 +8,9 @@
         <h2 class="post-title">{{ post.title }}</h2>
         <p class="post-author"> Автор: {{ post.author }}</p>
         <p class="post-content"> {{ post.content }}</p>
+        {% if request.user == post.author %} 
+        <a href="{% url 'editPost' post.id %}">Редагувати</a>
+        {% endif %}
     </div>
     {% endfor %}
 </div> 

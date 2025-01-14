@@ -1,10 +1,11 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
 from django.urls import reverse_lazy
 from .forms import PostForm
 from .models import Post
+from django.contrib.auth.decorators import login_required
 
 def index(request): 
     posts = Post.objects.all().order_by('id')
@@ -13,7 +14,8 @@ def index(request):
     return render(request, 'blog/index.html', {'posts': posts})
 
 def blog(request): 
-    posts = Post.objects.all()
+    posts = Post.objects.all().order_by('id')
+    posts = posts[::-1]
     return render(request, 'blog/blog.html', {'posts': posts})
 
 def aboutUs(request): 
@@ -43,4 +45,18 @@ def addPost(request):
             return redirect('index')
     else: 
         form = PostForm()
-    return render(request, 'blog/addPost.html', {'form': form})
+    return render(request, 'blog/posts/addPost.html', {'form': form})
+
+
+@login_required
+def editPost(request, post_id):
+    post = get_object_or_404(Post, id=post_id, author=request.user)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()
+            return redirect('blog')
+    else:
+        form = PostForm(instance=post)
+    return render(request, 'blog/posts/editPost.html', {'form': form, 'post': post})
+
