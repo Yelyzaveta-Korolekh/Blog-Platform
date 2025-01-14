@@ -2,9 +2,31 @@
 {% load static %}
 
 {% block content %}
-<div class="container">
+<div class="post-detail-container">
     <h1>{{post.title}}</h1>
     <p>Автор: {{post.author}}</p>
     <p>{{post.content}}</p>
 </div>
+<div class="comments-section">
+    <h2>Коментарі</h2>
+    <div class="comments"> 
+        {% for comment in comments %} 
+        <div class="comment">
+            <p><strong>{{ comment.author.username }}</strong></p>
+            <p>{{ comment.content }}</p>
+            <p>{{ comment.createdAt }}</p>
+        </div> 
+        {% endfor %} 
+    </div>
+    {% if request.user.is_authenticated %} 
+    <h3>Додати коментар</h3>
+    <form method="post"> 
+        {% csrf_token %} 
+        {{ form.as_p }} 
+        <button type="submit">Надіслати</button> 
+    </form> 
+    {% else %} 
+    <p>
+        Ви повинні <a href="{% url 'login' %}">увійти в систему</a>, щоб залишити коментар.</p> 
+        {% endif %}
 {% endblock %}

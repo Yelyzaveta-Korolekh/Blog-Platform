@@ -3,7 +3,7 @@ from django.contrib.auth.views import LoginView
 from django.contrib.auth.forms import UserCreationForm
 from django.views import generic
 from django.urls import reverse_lazy
-from .forms import PostForm
+from .forms import PostForm, CommentForm
 from .models import Post
 from django.contrib.auth.decorators import login_required
 
@@ -70,5 +70,15 @@ def deletePost(request, post_id):
 
 def postPage (request, post_id):
     post = get_object_or_404(Post, id=post_id)
-    return render(request, 'blog/posts/postPage.html', {'post' : post})
-
+    comments = post.comments.all()
+    if request.method == 'POST': 
+        form = CommentForm(request.POST) 
+        if form.is_valid(): 
+            comment = form.save(commit=False) 
+            comment.post = post 
+            comment.author = request.user 
+            comment.save() 
+            return redirect('postPage', post_id=post.id) 
+    else: 
+        form = CommentForm() 
+    return render(request, 'blog/posts/postPage.html', {'post': post, 'comments': comments, 'form': form})
