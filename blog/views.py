@@ -60,3 +60,7 @@ def editPost(request, post_id):
         form = PostForm(instance=post)
     return render(request, 'blog/posts/editPost.html', {'form': form, 'post': post})
 
+def postPage (request, post_id):
+    post = get_object_or_404(Post, id=post_id)
+    return render(request, 'blog/posts/postPage.html', {'post' : post})
+
